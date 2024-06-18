@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import logoWhite from "../assets/logowhite.png";
 import {
   AppWindow,
-  ArrowRight,
   ArrowRightIcon,
-  ArrowRightToLine,
   Facebook,
   Github,
   LocateIcon,

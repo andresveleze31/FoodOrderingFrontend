@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import logo from "../assets/logo.png";
 import { useAuth0 } from "@auth0/auth0-react";
-import { User2Icon } from "lucide-react";
 import UsernameMenu from "./UsernameMenu";
 
 const Header = () => {
