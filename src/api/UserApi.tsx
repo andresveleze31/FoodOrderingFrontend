@@ -5,10 +5,10 @@ import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const useGetMyUser = (): Promise<User> => {
+export const useGetMyUser = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const getMyUserRequest = async () => {
+  const getMyUserRequest = async (): Promise<User> => {
     const accessToken = await getAccessTokenSilently();
 
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
@@ -22,6 +22,7 @@ export const useGetMyUser = (): Promise<User> => {
     if (!response.ok) {
       throw new Error("Failed to fetch user");
     }
+
     return response.json();
   };
 
@@ -31,14 +32,11 @@ export const useGetMyUser = (): Promise<User> => {
     error,
   } = useQuery("fetchCurrentUser", getMyUserRequest);
 
-  if(error){
-    toast.error(error.toString())
+  if (error) {
+    toast.error(error.toString());
   }
 
-  return{
-    currentUser, isLoading
-  }
-
+  return { currentUser, isLoading };
 };
 
 type CreateUserRequest = {
