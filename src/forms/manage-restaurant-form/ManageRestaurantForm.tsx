@@ -50,10 +50,9 @@ const formSchema = z
 type RestaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
-  restaurant?: Restaurant
+  restaurant?: Restaurant;
   onSave: (restaurantFormData: FormData) => void;
   isLoading: boolean;
-
 };
 const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
   const form = useForm<RestaurantFormData>({
@@ -65,26 +64,27 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
   });
 
   useEffect(() => {
-    if(!restaurant){
+    if (!restaurant) {
       return;
     }
 
-    const deliveryPriceFormatted = parseInt((restaurant.deliveryPrice/100).toFixed(2))
+    const deliveryPriceFormatted = parseInt(
+      (restaurant.deliveryPrice / 100).toFixed(2)
+    );
 
     const menuItemsFormatted = restaurant.menuItems.map((item) => ({
       ...item,
-      price: parseInt((item.price/100).toFixed(2))
+      price: parseInt((item.price / 100).toFixed(2)),
     }));
 
     const updatedRestaurant = {
       ...restaurant,
       deliveryPrice: deliveryPriceFormatted,
-      menuItems: menuItemsFormatted
-    }
+      menuItems: menuItemsFormatted,
+    };
 
     form.reset(updatedRestaurant);
-
-  }, [form, restaurant])
+  }, [form, restaurant]);
 
   const onSubmit = (formDataJson: RestaurantFormData) => {
     const formData = new FormData();
@@ -115,11 +115,7 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
     if (formDataJson.imageFile) {
       formData.append(`imageFile`, formDataJson.imageFile);
     }
-    console.log(formDataJson);
-    // Debugging: log formData contents
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+   
     onSave(formData);
   };
 
