@@ -65,15 +65,30 @@ const MobileNav = () => {
             </Link>
           )}
 
-          {isAuthenticated? (<Button onClick={() => logout()} className="flex flex-1 p-4 text-[1.6rem] font-bold bg-red-600">
-                Log Out
-            </Button>) : (<button
-            className="bg-red-600 text-center  uppercase text-white px-[5rem] rounded-xl text-[1.3rem] font-semibold hover:bg-red-600/90 transition-all duration-300 py-[1.2rem] "
-            onClick={async () => await loginWithRedirect()}
-          >
-            Sign In
-          </button>)}
-          
+          {isAuthenticated && (
+            <Link
+              className="font-bold hover:text-red-600 text-[1.6rem] transition-all duration-300"
+              to={"/manage-restaurant"}
+            >
+              Manage Restaurant
+            </Link>
+          )}
+
+          {isAuthenticated ? (
+            <Button
+              onClick={() => logout()}
+              className="flex flex-1 p-4 text-[1.6rem] font-bold bg-red-600"
+            >
+              Log Out
+            </Button>
+          ) : (
+            <button
+              className="bg-red-600 text-center  uppercase text-white px-[5rem] rounded-xl text-[1.3rem] font-semibold hover:bg-red-600/90 transition-all duration-300 py-[1.2rem] "
+              onClick={async () => await loginWithRedirect()}
+            >
+              Sign In
+            </button>
+          )}
         </SheetDescription>
       </SheetContent>
     </Sheet>

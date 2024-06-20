@@ -46,7 +46,7 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSave)}
-        className="space-y-[2rem] bg-gray-50 rounded-lg md:p-10"
+        className="space-y-[2rem] p-[1rem] bg-gray-50 rounded-lg md:p-10"
       >
         <div>
           <h2 className="text-[3rem] font-bold">User Profile</h2>
