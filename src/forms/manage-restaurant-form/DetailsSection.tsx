@@ -45,7 +45,6 @@ const DetailsSection = () => {
                 <Input {...field} className="bg-white" />
               </FormControl>
               <FormMessage />
-
             </FormItem>
           )}
         />
@@ -60,13 +59,11 @@ const DetailsSection = () => {
                 <Input {...field} className="bg-white" />
               </FormControl>
               <FormMessage />
-
             </FormItem>
           )}
         />
       </div>
 
-          
       <div className="grid grid-cols-2 gap-[2rem] ">
         <FormField
           control={control}
@@ -78,7 +75,6 @@ const DetailsSection = () => {
                 <Input {...field} className="bg-white" />
               </FormControl>
               <FormMessage />
-
             </FormItem>
           )}
         />
@@ -88,17 +84,17 @@ const DetailsSection = () => {
           name="estimatedDeliveryTime"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-[1.4rem] ">Estimated Delivery Time (minutes) </FormLabel>
+              <FormLabel className="text-[1.4rem] ">
+                Estimated Delivery Time (minutes){" "}
+              </FormLabel>
               <FormControl>
                 <Input {...field} className="bg-white" placeholder="30" />
               </FormControl>
               <FormMessage />
-
             </FormItem>
           )}
         />
       </div>
-
     </div>
   );
 };

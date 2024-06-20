@@ -23,16 +23,16 @@ const MenuSection = () => {
       <FormField
         control={control}
         name="menuItems"
-        render={({ field }) => (
-          <FormItem className="flex flex-col gap-[2rem] ">
-            {fields.map((_, index) => (
-              <MenuItemInput
-                index={index}
-                removeMenuItem={() => remove(index)}
-              />
-            ))}
-          </FormItem>
-        )}
+        render={() => (
+            <FormItem className="flex flex-col gap-[2rem] ">
+              {fields.map((_, index) => (
+                <MenuItemInput
+                  index={index}
+                  removeMenuItem={() => remove(index)}
+                />
+              ))}
+            </FormItem>
+          )}
       />
       <Button className="py-[2rem] " type="button" onClick={() => append({name: "", price: ""})}>Add Menu Item</Button>
     </div>
