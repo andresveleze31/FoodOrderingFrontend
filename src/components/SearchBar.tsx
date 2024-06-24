@@ -10,8 +10,7 @@ import { useEffect } from "react";
 type Props = {
   onSubmit: (formData: SearchForm) => void;
   placeHolder: string;
-  onReset?: () => void;
-  searchQuery: string;
+  searchQuery?: string;
 };
 
 const formSchema = z.object({
@@ -22,7 +21,7 @@ const formSchema = z.object({
 
 export type SearchForm = z.infer<typeof formSchema>;
 
-const SearchBar = ({ onSubmit, onReset, placeHolder, searchQuery }: Props) => {
+const SearchBar = ({ onSubmit, placeHolder, searchQuery }: Props) => {
   const form = useForm<SearchForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
