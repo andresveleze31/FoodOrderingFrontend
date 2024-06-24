@@ -1,6 +1,15 @@
-import { Search } from "lucide-react";
+import SearchBar, { SearchForm } from "./SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = (searchFormValues: SearchForm) => {
+    navigate({
+      pathname: `/search/${searchFormValues.searchQuery}`,
+    });
+  };
+
   return (
     <div className="hero-bg w-full py-[10rem] ">
       <div className="contenedor-second">
@@ -12,21 +21,12 @@ const Hero = () => {
           the <br /> Best Restaurants
         </h1>
 
-        <form className="p-[2rem] bg-yellow-500 grid grid-cols-1 md:grid-cols-[3fr,1fr] gap-[2rem] rounded-2xl " action="">
-          <div className="bg-white py-[1rem] px-[2rem] flex items-center rounded-xl ">
-            <Search className="text-yellow-500" />
-            <input
-              className="p-[1rem] w-full outline-none "
-              type="text"
-              placeholder="Search by City or Town"
-            />
-          </div>
-          <input
-          value={"Search"}
-            type="submit"
-            className="bg-red-600  uppercase text-white px-[5rem] rounded-xl text-[1.6rem] cursor-pointer font-semibold hover:bg-red-600/90 transition-all duration-300 py-[2rem] "
-          />
-        </form>
+        <SearchBar
+          placeHolder="Search by City or Town"
+          onSubmit={handleSearchSubmit}
+        />
+
+        
       </div>
     </div>
   );
