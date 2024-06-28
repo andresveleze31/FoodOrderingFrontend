@@ -68,6 +68,15 @@ const MobileNav = () => {
           {isAuthenticated && (
             <Link
               className="font-bold hover:text-red-600 text-[1.6rem] transition-all duration-300"
+              to={"/order-status"}
+            >
+              Order Status
+            </Link>
+          )}
+
+          {isAuthenticated && (
+            <Link
+              className="font-bold hover:text-red-600 text-[1.6rem] transition-all duration-300"
               to={"/manage-restaurant"}
             >
               Manage Restaurant

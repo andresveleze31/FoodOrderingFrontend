@@ -60,7 +60,9 @@ const Header = () => {
 
       <div className="hidden md:flex items-center gap-[2rem]  ">
         {isAuthenticated ? (
+          
           <UsernameMenu />
+          
         ) : (
           <button
             className="bg-red-600  uppercase text-white px-[5rem] rounded-xl text-[1.3rem] font-semibold hover:bg-red-600/90 transition-all duration-300 py-[1.2rem] "
