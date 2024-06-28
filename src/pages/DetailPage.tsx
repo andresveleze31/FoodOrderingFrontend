@@ -1,9 +1,12 @@
 import { useGetRestaurant } from "@/api/FoodRestaurantApi";
+import { useCreateCheckoutSession } from "@/api/OrderApi";
+import CheckoutButton from "@/components/CheckoutButton";
 import Hero from "@/components/Hero";
 import MenuItemComponent from "@/components/MenuItemComponent";
 import OrderSummary from "@/components/OrderSummary";
 import RestaurantInfo from "@/components/RestaurantInfo";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
 import { MenuItem } from "@/types";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -20,7 +23,13 @@ const DetailPage = () => {
 
   const { restaurant, isLoading } = useGetRestaurant(restaurantId);
 
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { createCheckoutSession, isLoading: isCheckoutLoading } =
+    useCreateCheckoutSession();
+
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    const storedCarItems = sessionStorage.getItem(`cartItems-${restaurantId}`);
+    return storedCarItems ? JSON.parse(storedCarItems) : [];
+  });
 
   const addToCart = (menuItem: MenuItem) => {
     setCartItems((prevCartItems) => {
@@ -48,6 +57,11 @@ const DetailPage = () => {
         ];
       }
 
+      sessionStorage.setItem(
+        `cartItems-${restaurantId}`,
+        JSON.stringify(updatedCartItems)
+      );
+
       return updatedCartItems;
     });
   };
@@ -58,8 +72,38 @@ const DetailPage = () => {
         (item) => cartItem._id !== item._id
       );
 
+      sessionStorage.setItem(
+        `cartItems-${restaurantId}`,
+        JSON.stringify(updatedCartItems)
+      );
+
       return updatedCartItems;
     });
+  };
+
+  const onCheckout = async (userFormData: UserFormData) => {
+    if (!restaurant) {
+      return;
+    }
+
+    const checkoutData = {
+      cartItems: cartItems.map((cartItem) => ({
+        menuItemId: cartItem._id,
+        name: cartItem.name,
+        quantity: cartItem.quantity.toString(),
+      })),
+      restaurantId: restaurant._id,
+      deliveryDetails: {
+        name: userFormData.name,
+        addressLine1: userFormData.addressLine1,
+        city: userFormData.city,
+        country: userFormData.country,
+        email: userFormData.email as string,
+      },
+    };
+
+    const data = await createCheckoutSession(checkoutData);
+    window.location.href = data.url;
   };
 
   if (isLoading || !restaurant) {
@@ -67,7 +111,7 @@ const DetailPage = () => {
   }
 
   return (
-    <div className="bg-slate-100">
+    <div className="bg-slate-100 ">
       <Hero />
 
       <div className="contenedor rounded-xl bg-white p-[5rem] mt-[5rem]   grid grid-cols-1 md:grid-cols-[2fr,1fr] gap-[4rem] ">
@@ -93,7 +137,18 @@ const DetailPage = () => {
         </div>
 
         <div className="border h-fit ">
-          <OrderSummary restaurant={restaurant} cartItems={cartItems} removeFromCart={removeFromCart}  />
+          <OrderSummary
+            restaurant={restaurant}
+            cartItems={cartItems}
+            removeFromCart={removeFromCart}
+          />
+          <div className="flex justify-center mt-[5rem] ">
+            <CheckoutButton
+              disabled={cartItems.length === 0}
+              onCheckout={onCheckout}
+              isLoading={isCheckoutLoading}
+            />
+          </div>
         </div>
       </div>
     </div>
