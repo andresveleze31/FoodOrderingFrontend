@@ -40,7 +40,7 @@ const MobileNav = () => {
           </Link>
           <Link
             className="font-bold hover:text-red-600 text-[1.6rem] transition-all duration-300"
-            to={"/restaurants"}
+            to={"/search/London"}
           >
             Restaurants
           </Link>

@@ -13,7 +13,7 @@ const RestaurantInfo = ({ restaurant }: Props) => {
           {restaurant.restaurantName}{" "}
         </h1>
 
-        <div className="text-[1.3rem] items-center font-semibold h-fit py-[1rem] px-[2rem] flex gap-[1rem] border-red-600 border-[.2rem] ">
+        <div className="text-[1.3rem] items-center font-semibold h-fit py-[1rem] px-[2rem] flex gap-[1rem] border border-[.2rem] ">
           <Star className="w-[1.2rem]  " />
           Rate 4.2
         </div>

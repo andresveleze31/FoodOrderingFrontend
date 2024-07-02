@@ -28,7 +28,7 @@ const Header = () => {
             REAL FOOD
           </span>
           <Link
-            to={"/restaurants"}
+            to={"/search/London"}
             className="uppercase text-[1.8rem] font-semibold hover:text-yellow-400 transition-all duration-300 "
           >
             Restaurants

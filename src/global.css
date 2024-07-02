@@ -126,7 +126,32 @@
     background-image: url("assets/hero.jpg");
     background-size: cover; /* O puedes usar 'contain' o cualquier otra medida */
     background-position: center center; /* Alinea la imagen al centro */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-repeat: no-repeat; 
+    /* Evita que la imagen se repita */
+  }
+
+  .hero-paralax {
+    background-image: url("assets/parallax1.jpg");
+    background-size: cover; /* O puedes usar 'contain' o cualquier otra medida */
+    background-position: center center; /* Alinea la imagen al centro */
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    /* Evita que la imagen se repita */
+  }
+
+  .hero-paralax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* capa negra con opacidad */
+    z-index: 10;
+  }
+
+  .indice{
+    z-index: 50;
   }
   
   .font-secundary{

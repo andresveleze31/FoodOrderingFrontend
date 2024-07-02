@@ -8,6 +8,8 @@ import ManageRestaurantePage from "./pages/ManageRestaurantePage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import OrderSatusPage from "./pages/OrderSatusPage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
 const AppRoutes = () => {
   return (
@@ -17,6 +19,22 @@ const AppRoutes = () => {
         element={
           <Layout>
             <HomePage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/about-us"
+        element={
+          <Layout>
+            <AboutPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/contact-us"
+        element={
+          <Layout>
+            <ContactPage />
           </Layout>
         }
       />
