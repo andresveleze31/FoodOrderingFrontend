@@ -3,8 +3,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import ResOne from "../assets/res-1.png";
 import ResTwo from "../assets/res-2.png";
