@@ -31,10 +31,17 @@ const Hero = ({ home }: Props) => {
           the <br /> Best Restaurants
         </h1>
 
-        <SearchBar
+        {home ? (<SearchBar
+          placeHolder="Search by City or Town (London, Manchester) "
+          onSubmit={handleSearchSubmit}
+        />) : (
+          <div className="pb-[10rem] ">
+<SearchBar
           placeHolder="Search by City or Town (London, Manchester) "
           onSubmit={handleSearchSubmit}
         />
+          </div>
+        ) }
 
         {home && (
           <div className="mt-[4rem] ">
